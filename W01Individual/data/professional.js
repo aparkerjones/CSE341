@@ -6,19 +6,19 @@ module.exports = {
     firstName: 'Parker Jones',
     url: 'https://example.com',
   },
-  primaryDescription: ' is the profile shown for this assignment.',
+  primaryDescription: ' created this backend.',
   workDescription1:
-    'This backend serves the data required by the existing frontend without changing the client code.',
+    'This backend serves the data required by the existing frontend without changing the original code.',
   workDescription2:
     'It can also serve the static frontend so the entire app can be tested from the same origin.',
   linkTitleText: 'Find me here',
   linkedInLink: {
     text: 'LinkedIn',
-    link: 'https://example.com',
+    link: 'https://linkedin.com',
   },
   githubLink: {
     text: 'GitHub',
-    link: 'https://example.com',
+    link: 'https://github.com',
   },
   contactText: 'Contact: parker.jones@example.com',
 };
