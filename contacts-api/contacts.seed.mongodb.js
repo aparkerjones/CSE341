@@ -1,0 +1,39 @@
+// Import starter contacts into the database used by this project.
+// In VS Code MongoDB playground, run this file while connected to your cluster.
+
+const targetDb = 'test';
+const targetCollection = 'contacts';
+
+const contacts = [
+  {
+    firstName: 'Parker',
+    lastName: 'Jones',
+    email: 'parker.jones@example.com',
+    favoriteColor: 'Blue',
+    birthday: '1999-04-12'
+  },
+  {
+    firstName: 'Avery',
+    lastName: 'Smith',
+    email: 'avery.smith@example.com',
+    favoriteColor: 'Green',
+    birthday: '2000-09-30'
+  },
+  {
+    firstName: 'Jordan',
+    lastName: 'Lee',
+    email: 'jordan.lee@example.com',
+    favoriteColor: 'Orange',
+    birthday: '1998-11-05'
+  }
+];
+
+use(targetDb);
+
+const collection = db.getCollection(targetCollection);
+collection.deleteMany({});
+const result = collection.insertMany(contacts);
+
+print('Inserted documents:', Object.keys(result.insertedIds).length);
+print('Database:', targetDb);
+print('Collection:', targetCollection);
