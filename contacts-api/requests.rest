@@ -1,8 +1,32 @@
 ### Get all contacts
 GET http://localhost:8080/contacts
 
-### Get one contact by query parameter id
-GET http://localhost:8080/contacts?id=REPLACE_WITH_CONTACT_ID
-
 ### Get one contact by id
 GET http://localhost:8080/contacts/REPLACE_WITH_CONTACT_ID
+
+### Create a contact
+POST http://localhost:8080/contacts
+Content-Type: application/json
+
+{
+	"firstName": "Taylor",
+	"lastName": "Miller",
+	"email": "taylor.miller@example.com",
+	"favoriteColor": "Red",
+	"birthday": "1997-02-18"
+}
+
+### Update a contact
+PUT http://localhost:8080/contacts/REPLACE_WITH_CONTACT_ID
+Content-Type: application/json
+
+{
+	"firstName": "Taylor",
+	"lastName": "Miller",
+	"email": "taylor.miller@example.com",
+	"favoriteColor": "Teal",
+	"birthday": "1997-02-18"
+}
+
+### Delete a contact
+DELETE http://localhost:8080/contacts/REPLACE_WITH_CONTACT_ID

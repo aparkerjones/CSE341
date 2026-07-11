@@ -25,6 +25,20 @@ const contacts = [
     email: 'jordan.lee@example.com',
     favoriteColor: 'Orange',
     birthday: '1998-11-05'
+  },
+  {
+    firstName: 'Taylor',
+    lastName: 'Miller',
+    email: 'taylor.miller@example.com',
+    favoriteColor: 'Red',
+    birthday: '1997-02-18'
+  },
+  {
+    firstName: 'Morgan',
+    lastName: 'Davis',
+    email: 'morgan.davis@example.com',
+    favoriteColor: 'Purple',
+    birthday: '2001-07-22'
   }
 ];
 

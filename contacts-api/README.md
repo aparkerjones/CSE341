@@ -1,18 +1,18 @@
-# CSE 341 - W01 Project (Contacts Part 1)
+# CSE 341 - W02 Project (Contacts Part 2)
 
-This project completes **Part 1** of the contacts API assignment:
+This project completes **Part 2** of the contacts API assignment:
 
-- Set up project and database
-- Import sample data
-- Build GET routes (`get all` and `get one by id`)
-- Deploy to Render
+- Full CRUD routes for contacts (`GET`, `POST`, `PUT`, `DELETE`)
+- Swagger API documentation and test UI at `/api-docs`
+- MongoDB-backed contact collection with required fields
 
 ## What is included in this code
 
 - MongoDB connection using environment variables
-- `GET /contacts` for all contacts
-- `GET /contacts/:id` for one contact
-- Basic `.rest` file for route testing
+- Express routes for all required contact endpoints
+- Validation and error handling for required fields
+- Swagger/OpenAPI documentation in `swagger.json`
+- Request samples in `requests.rest`
 
 ## Local setup
 
@@ -43,8 +43,14 @@ npm start
 ## Test routes
 
 - `GET http://localhost:8080/contacts`
-- `GET http://localhost:8080/contacts?id=<replace_with_valid_id>`
 - `GET http://localhost:8080/contacts/<replace_with_valid_id>`
+- `POST http://localhost:8080/contacts`
+- `PUT http://localhost:8080/contacts/<replace_with_valid_id>`
+- `DELETE http://localhost:8080/contacts/<replace_with_valid_id>`
+
+Swagger UI:
+
+- `http://localhost:8080/api-docs`
 
 You can use the `requests.rest` file with the VS Code REST Client extension.
 
@@ -67,3 +73,4 @@ node server.js
 
 - `https://your-render-url/contacts`
 - `https://your-render-url/contacts/<id>`
+- `https://your-render-url/api-docs`
