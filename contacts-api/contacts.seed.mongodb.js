@@ -1,5 +1,4 @@
-// Import starter contacts into the database used by this project.
-// In VS Code MongoDB playground, run this file while connected to your cluster.
+// Import starter contacts into the database.
 
 const targetDb = 'test';
 const targetCollection = 'contacts';
