@@ -1,0 +1,444 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "CSE 341 Dog Breeds API",
+    "version": "1.0.0",
+    "description": "API documentation for Week 03 project (Dog Breeds)"
+  },
+  "servers": [
+    {
+      "url": "/",
+      "description": "Current host (local or deployed)"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Breeds",
+      "description": "Dog breed CRUD endpoints"
+    },
+    {
+      "name": "Size Profiles",
+      "description": "Reference data for breed size ranges"
+    }
+  ],
+  "paths": {
+    "/breeds": {
+      "get": {
+        "tags": ["Breeds"],
+        "summary": "Get all dog breeds",
+        "responses": {
+          "200": {
+            "description": "Breed list returned",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BreedWithId"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Breeds"],
+        "summary": "Create a dog breed",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BreedInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Breed created"
+          },
+          "400": {
+            "description": "Invalid payload"
+          },
+          "409": {
+            "description": "Duplicate breed name"
+          }
+        }
+      }
+    },
+    "/breeds/{id}": {
+      "get": {
+        "tags": ["Breeds"],
+        "summary": "Get one breed by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Breed returned",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BreedWithId"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid id"
+          },
+          "404": {
+            "description": "Breed not found"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Breeds"],
+        "summary": "Replace an existing breed",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BreedInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Breed updated"
+          },
+          "400": {
+            "description": "Invalid id or payload"
+          },
+          "404": {
+            "description": "Breed not found"
+          },
+          "409": {
+            "description": "Duplicate breed name"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Breeds"],
+        "summary": "Delete a breed",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Breed deleted"
+          },
+          "400": {
+            "description": "Invalid id"
+          },
+          "404": {
+            "description": "Breed not found"
+          }
+        }
+      }
+    },
+    "/size-profiles": {
+      "get": {
+        "tags": ["Size Profiles"],
+        "summary": "Get all size profiles",
+        "responses": {
+          "200": {
+            "description": "Size profiles returned",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SizeProfileWithId"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Size Profiles"],
+        "summary": "Create a size profile",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SizeProfileInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Size profile created"
+          },
+          "400": {
+            "description": "Invalid payload"
+          }
+        }
+      }
+    },
+    "/size-profiles/{id}": {
+      "get": {
+        "tags": ["Size Profiles"],
+        "summary": "Get one size profile by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Size profile returned",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SizeProfileWithId"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid id"
+          },
+          "404": {
+            "description": "Size profile not found"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Size Profiles"],
+        "summary": "Replace an existing size profile",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SizeProfileInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Size profile updated"
+          },
+          "400": {
+            "description": "Invalid id or payload"
+          },
+          "404": {
+            "description": "Size profile not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Size Profiles"],
+        "summary": "Delete a size profile",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Size profile deleted"
+          },
+          "400": {
+            "description": "Invalid id"
+          },
+          "404": {
+            "description": "Size profile not found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BreedInput": {
+        "type": "object",
+        "required": [
+          "breedName",
+          "averageWeightLbs",
+          "averageHeightInches",
+          "sheddingSeverity",
+          "hardiness",
+          "hypoallergenic",
+          "intelligenceScale",
+          "energyLevel",
+          "trainability",
+          "lifeExpectancyYears",
+          "barkingLevel",
+          "goodWithChildren",
+          "originCountry"
+        ],
+        "properties": {
+          "breedName": {
+            "type": "string",
+            "example": "Labrador Retriever"
+          },
+          "averageWeightLbs": {
+            "type": "integer",
+            "example": 65
+          },
+          "averageHeightInches": {
+            "type": "integer",
+            "example": 23
+          },
+          "sheddingSeverity": {
+            "type": "integer",
+            "example": 4
+          },
+          "hardiness": {
+            "type": "integer",
+            "example": 8
+          },
+          "hypoallergenic": {
+            "type": "boolean",
+            "example": false
+          },
+          "intelligenceScale": {
+            "type": "integer",
+            "example": 8
+          },
+          "energyLevel": {
+            "type": "integer",
+            "example": 8
+          },
+          "trainability": {
+            "type": "integer",
+            "example": 9
+          },
+          "lifeExpectancyYears": {
+            "type": "integer",
+            "example": 12
+          },
+          "barkingLevel": {
+            "type": "integer",
+            "example": 5
+          },
+          "goodWithChildren": {
+            "type": "boolean",
+            "example": true
+          },
+          "originCountry": {
+            "type": "string",
+            "example": "Canada"
+          },
+          "sizeProfileId": {
+            "type": "string",
+            "example": "686f13a01d8b3e2a12345678"
+          }
+        }
+      },
+      "BreedWithId": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BreedInput"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "_id": {
+                "type": "string",
+                "example": "686f13a01d8b3e2a12345679"
+              }
+            }
+          }
+        ]
+      },
+      "SizeProfileInput": {
+        "type": "object",
+        "required": ["profileName", "minWeightLbs", "maxWeightLbs", "minHeightInches", "maxHeightInches"],
+        "properties": {
+          "profileName": {
+            "type": "string",
+            "example": "Medium"
+          },
+          "minWeightLbs": {
+            "type": "number",
+            "example": 25
+          },
+          "maxWeightLbs": {
+            "type": "number",
+            "example": 55
+          },
+          "minHeightInches": {
+            "type": "number",
+            "example": 15
+          },
+          "maxHeightInches": {
+            "type": "number",
+            "example": 22
+          }
+        }
+      },
+      "SizeProfileWithId": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/SizeProfileInput"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "_id": {
+                "type": "string",
+                "example": "686f13a01d8b3e2a12345680"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

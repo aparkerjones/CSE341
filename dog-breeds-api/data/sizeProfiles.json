@@ -1,0 +1,23 @@
+[
+  {
+    "profileName": "Small",
+    "minWeightLbs": 5,
+    "maxWeightLbs": 24,
+    "minHeightInches": 6,
+    "maxHeightInches": 14
+  },
+  {
+    "profileName": "Medium",
+    "minWeightLbs": 25,
+    "maxWeightLbs": 55,
+    "minHeightInches": 15,
+    "maxHeightInches": 22
+  },
+  {
+    "profileName": "Large",
+    "minWeightLbs": 56,
+    "maxWeightLbs": 120,
+    "minHeightInches": 23,
+    "maxHeightInches": 34
+  }
+]

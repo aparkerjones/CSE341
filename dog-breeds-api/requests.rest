@@ -1,0 +1,78 @@
+### Get all breeds
+GET http://localhost:8080/breeds
+
+### Get one breed by id
+GET http://localhost:8080/breeds/REPLACE_WITH_BREED_ID
+
+### Create a breed
+POST http://localhost:8080/breeds
+Content-Type: application/json
+
+{
+  "breedName": "Labrador Retriever",
+  "averageWeightLbs": 65,
+  "averageHeightInches": 23,
+  "sheddingSeverity": 4,
+  "hardiness": 8,
+  "hypoallergenic": false,
+  "intelligenceScale": 8,
+  "energyLevel": 8,
+  "trainability": 9,
+  "lifeExpectancyYears": 12,
+  "barkingLevel": 5,
+  "goodWithChildren": true,
+  "originCountry": "Canada"
+}
+
+### Update a breed
+PUT http://localhost:8080/breeds/REPLACE_WITH_BREED_ID
+Content-Type: application/json
+
+{
+  "breedName": "Labrador Retriever",
+  "averageWeightLbs": 67,
+  "averageHeightInches": 23,
+  "sheddingSeverity": 4,
+  "hardiness": 8,
+  "hypoallergenic": false,
+  "intelligenceScale": 8,
+  "energyLevel": 9,
+  "trainability": 9,
+  "lifeExpectancyYears": 12,
+  "barkingLevel": 5,
+  "goodWithChildren": true,
+  "originCountry": "Canada"
+}
+
+### Delete a breed
+DELETE http://localhost:8080/breeds/REPLACE_WITH_BREED_ID
+
+### Get all size profiles
+GET http://localhost:8080/size-profiles
+
+### Create a size profile
+POST http://localhost:8080/size-profiles
+Content-Type: application/json
+
+{
+  "profileName": "Medium",
+  "minWeightLbs": 25,
+  "maxWeightLbs": 55,
+  "minHeightInches": 15,
+  "maxHeightInches": 22
+}
+
+### Update a size profile
+PUT http://localhost:8080/size-profiles/REPLACE_WITH_SIZE_PROFILE_ID
+Content-Type: application/json
+
+{
+  "profileName": "Medium",
+  "minWeightLbs": 24,
+  "maxWeightLbs": 57,
+  "minHeightInches": 14,
+  "maxHeightInches": 23
+}
+
+### Delete a size profile
+DELETE http://localhost:8080/size-profiles/REPLACE_WITH_SIZE_PROFILE_ID

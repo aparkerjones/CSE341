@@ -1,0 +1,47 @@
+[
+  {
+    "breedName": "Labrador Retriever",
+    "averageWeightLbs": 65,
+    "averageHeightInches": 23,
+    "sheddingSeverity": 4,
+    "hardiness": 8,
+    "hypoallergenic": false,
+    "intelligenceScale": 8,
+    "energyLevel": 8,
+    "trainability": 9,
+    "lifeExpectancyYears": 12,
+    "barkingLevel": 5,
+    "goodWithChildren": true,
+    "originCountry": "Canada"
+  },
+  {
+    "breedName": "Poodle",
+    "averageWeightLbs": 45,
+    "averageHeightInches": 21,
+    "sheddingSeverity": 1,
+    "hardiness": 7,
+    "hypoallergenic": true,
+    "intelligenceScale": 10,
+    "energyLevel": 7,
+    "trainability": 10,
+    "lifeExpectancyYears": 13,
+    "barkingLevel": 4,
+    "goodWithChildren": true,
+    "originCountry": "Germany"
+  },
+  {
+    "breedName": "Siberian Husky",
+    "averageWeightLbs": 50,
+    "averageHeightInches": 22,
+    "sheddingSeverity": 5,
+    "hardiness": 9,
+    "hypoallergenic": false,
+    "intelligenceScale": 7,
+    "energyLevel": 10,
+    "trainability": 6,
+    "lifeExpectancyYears": 12,
+    "barkingLevel": 6,
+    "goodWithChildren": true,
+    "originCountry": "Russia"
+  }
+]
