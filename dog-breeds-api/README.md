@@ -28,6 +28,7 @@ npm install
 
 ```env
 MONGODB_URI=your_mongodb_connection_string
+MONGODB_DB=dog-breeds-db
 PORT=8080
 ```
 
@@ -75,6 +76,7 @@ Use `requests.rest` with the VS Code REST Client extension for quick testing.
 4. Add Render environment variables:
 
 - `MONGODB_URI`
+- `MONGODB_DB` = `dog-breeds-db`
 - `PORT` (optional)
 
 5. Verify deployed routes and `/api-docs`.

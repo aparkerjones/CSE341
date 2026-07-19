@@ -1,6 +1,7 @@
 const { MongoClient } = require('mongodb');
 
 const connectionString = process.env.MONGODB_URI;
+const databaseName = process.env.MONGODB_DB || 'dog-breeds-db';
 
 if (!connectionString) {
   throw new Error('MONGODB_URI is missing. Add it to your .env file.');
@@ -11,7 +12,8 @@ let database;
 
 async function connectToDb() {
   await client.connect();
-  database = client.db();
+  database = client.db(databaseName);
+  console.log(`Connected to MongoDB database: ${databaseName}`);
   return database;
 }
 

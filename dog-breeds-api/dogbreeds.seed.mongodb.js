@@ -1,4 +1,4 @@
-// Import starter size profiles and breeds into your selected database.
+// Import starter size profiles and breeds into database.
 
 const targetDb = 'dog-breeds-db';
 
