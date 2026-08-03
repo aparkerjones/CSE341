@@ -48,7 +48,16 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use(
+  '/api-docs',
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerDocument, {
+    swaggerOptions: {
+      withCredentials: true,
+      persistAuthorization: true,
+    },
+  })
+);
 
 app.get('/', (req, res) => {
   res.send('Dog Breeds API is running. Try /breeds, /size-profiles, and /api-docs');
