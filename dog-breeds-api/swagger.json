@@ -19,9 +19,66 @@
     {
       "name": "Size Profiles",
       "description": "Reference data for breed size ranges"
+    },
+    {
+      "name": "Auth",
+      "description": "GitHub OAuth authentication endpoints"
     }
   ],
   "paths": {
+    "/auth/login": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "Start GitHub OAuth login",
+        "responses": {
+          "302": {
+            "description": "Redirects to GitHub login"
+          },
+          "503": {
+            "description": "OAuth is not configured"
+          }
+        }
+      }
+    },
+    "/auth/github/callback": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "GitHub OAuth callback endpoint",
+        "responses": {
+          "302": {
+            "description": "Redirects to /auth/me on success"
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "503": {
+            "description": "OAuth is not configured"
+          }
+        }
+      }
+    },
+    "/auth/me": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "Get current auth/session status",
+        "responses": {
+          "200": {
+            "description": "Session status returned"
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "Log out current user",
+        "responses": {
+          "200": {
+            "description": "Logged out"
+          }
+        }
+      }
+    },
     "/breeds": {
       "get": {
         "tags": ["Breeds"],
@@ -45,6 +102,11 @@
       "post": {
         "tags": ["Breeds"],
         "summary": "Create a dog breed",
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -59,11 +121,17 @@
           "201": {
             "description": "Breed created"
           },
+          "401": {
+            "description": "Authentication required"
+          },
           "400": {
             "description": "Invalid payload"
           },
           "409": {
             "description": "Duplicate breed name"
+          },
+          "503": {
+            "description": "OAuth is not configured"
           }
         }
       }
@@ -104,6 +172,11 @@
       "put": {
         "tags": ["Breeds"],
         "summary": "Replace an existing breed",
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
         "parameters": [
           {
             "name": "id",
@@ -128,6 +201,9 @@
           "200": {
             "description": "Breed updated"
           },
+          "401": {
+            "description": "Authentication required"
+          },
           "400": {
             "description": "Invalid id or payload"
           },
@@ -136,12 +212,20 @@
           },
           "409": {
             "description": "Duplicate breed name"
+          },
+          "503": {
+            "description": "OAuth is not configured"
           }
         }
       },
       "delete": {
         "tags": ["Breeds"],
         "summary": "Delete a breed",
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
         "parameters": [
           {
             "name": "id",
@@ -156,11 +240,17 @@
           "200": {
             "description": "Breed deleted"
           },
+          "401": {
+            "description": "Authentication required"
+          },
           "400": {
             "description": "Invalid id"
           },
           "404": {
             "description": "Breed not found"
+          },
+          "503": {
+            "description": "OAuth is not configured"
           }
         }
       }
@@ -188,6 +278,11 @@
       "post": {
         "tags": ["Size Profiles"],
         "summary": "Create a size profile",
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -202,8 +297,14 @@
           "201": {
             "description": "Size profile created"
           },
+          "401": {
+            "description": "Authentication required"
+          },
           "400": {
             "description": "Invalid payload"
+          },
+          "503": {
+            "description": "OAuth is not configured"
           }
         }
       }
@@ -244,6 +345,11 @@
       "put": {
         "tags": ["Size Profiles"],
         "summary": "Replace an existing size profile",
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
         "parameters": [
           {
             "name": "id",
@@ -268,17 +374,28 @@
           "200": {
             "description": "Size profile updated"
           },
+          "401": {
+            "description": "Authentication required"
+          },
           "400": {
             "description": "Invalid id or payload"
           },
           "404": {
             "description": "Size profile not found"
+          },
+          "503": {
+            "description": "OAuth is not configured"
           }
         }
       },
       "delete": {
         "tags": ["Size Profiles"],
         "summary": "Delete a size profile",
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
         "parameters": [
           {
             "name": "id",
@@ -293,17 +410,30 @@
           "200": {
             "description": "Size profile deleted"
           },
+          "401": {
+            "description": "Authentication required"
+          },
           "400": {
             "description": "Invalid id"
           },
           "404": {
             "description": "Size profile not found"
+          },
+          "503": {
+            "description": "OAuth is not configured"
           }
         }
       }
     }
   },
   "components": {
+    "securitySchemes": {
+      "cookieAuth": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "connect.sid"
+      }
+    },
     "schemas": {
       "BreedInput": {
         "type": "object",

@@ -1,6 +1,7 @@
 const express = require('express');
 const { ObjectId } = require('mongodb');
 const { getDb } = require('../db/connect');
+const requireAuth = require('../middleware/requireAuth');
 
 const router = express.Router();
 const breedsCollection = () => getDb().collection('breeds');
@@ -43,6 +44,13 @@ function validateBreedPayload(payload) {
     return {
       isValid: false,
       message: 'breedName and originCountry must be strings.',
+    };
+  }
+
+  if (!payload.breedName.trim() || !payload.originCountry.trim()) {
+    return {
+      isValid: false,
+      message: 'breedName and originCountry cannot be empty.',
     };
   }
 
@@ -156,7 +164,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', requireAuth, async (req, res) => {
   try {
     const validation = validateBreedPayload(req.body || {});
     if (!validation.isValid) {
@@ -181,7 +189,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', requireAuth, async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -217,7 +225,7 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', requireAuth, async (req, res) => {
   try {
     const { id } = req.params;
 

@@ -1,6 +1,7 @@
 const express = require('express');
 const { ObjectId } = require('mongodb');
 const { getDb } = require('../db/connect');
+const requireAuth = require('../middleware/requireAuth');
 
 const router = express.Router();
 const sizeProfilesCollection = () => getDb().collection('sizeProfiles');
@@ -20,6 +21,13 @@ function validateSizeProfilePayload(payload) {
     return {
       isValid: false,
       message: 'profileName must be a string.',
+    };
+  }
+
+  if (!payload.profileName.trim()) {
+    return {
+      isValid: false,
+      message: 'profileName cannot be empty.',
     };
   }
 
@@ -76,7 +84,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', requireAuth, async (req, res) => {
   try {
     const validation = validateSizeProfilePayload(req.body || {});
     if (!validation.isValid) {
@@ -102,7 +110,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', requireAuth, async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -139,7 +147,7 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', requireAuth, async (req, res) => {
   try {
     const { id } = req.params;
 
